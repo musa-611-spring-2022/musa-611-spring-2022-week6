@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -115,21 +115,19 @@ fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f5
 */
 
 // Step 3
-let p3;
 fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
   .then(resp => resp.json())
   .then(data => {
-    p3 = L.geoJSON(data, {
-      style: function(feature) {
+    L.geoJSON(data, {
+      style: feature => {
         let names = feature.properties.NAME;
-        for (let i = 0; i < names.length; i++) {
-          return {color: campusColors[names]};
-        }
-      }})
-      .bindTooltip(function (layer) {
+        return { color: campusColors[names] };
+      },
+    })
+      .bindTooltip(layer => {
         let nam = layer.feature.properties.NAME;
         let add = layer.feature.properties.ADDRESS;
-        return `Name: ${nam} <br>Address: ${add}`; 
+        return `Name: ${nam} <br>Address: ${add}`;
       })
       .addTo(map);
   });
