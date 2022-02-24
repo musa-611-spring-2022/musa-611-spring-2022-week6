@@ -114,8 +114,11 @@ fetch(url)
     L.geoJSON(data, {
       style: function (feature) {
         let name = feature.properties.NAME;
-        return {color: campusColors[name]};
+        return {
+           color: campusColors[name]
+        };
    }}
+ }
       )
     .bindTooltip(
       function (layer) {
