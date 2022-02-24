@@ -112,15 +112,16 @@ fetch(url)
   .then(resp => resp.json())
   .then(data => {
     L.geoJSON(data, {
-      style: function (feature) {
+      style: feature => {
         let name = feature.properties.NAME;
         return { color: campusColors[name] };
       }})
       .bindTooltip(
-        function (layer) {
+        layer => {
           let name1 = layer.feature.properties.NAME;
           let address = layer.feature.properties.ADDRESS;
           return `Name: ${name1} <br>Address: ${address}`;
-      })
-    .addTo(map);
+        }
+    )
+      .addTo(map);
   });
