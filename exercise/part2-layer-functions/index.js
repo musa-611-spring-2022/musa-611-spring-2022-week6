@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -91,13 +91,14 @@ fetch(url)
   .then(data => {
     L.geoJSON(data, {
       style: feature => {
-          return { color: campusColors[name] };
-        }
-      })
-      .bindTooltip(function (layer) {
-        let name1 = layer.feature.properties.NAME;
+          let name1 = feature.properties.NAME;
+        return { color: campusColors[name1] };
+      },
+    })
+      .bindTooltip(layer => {
+        let name2 = layer.feature.properties.NAME;
         let address = layer.feature.properties.ADDRESS;
-        return `Name: ${name1} <br>Address: ${address}`;
+        return `Name: ${name2} <br>Address: ${address}`;
       })
       .addTo(map);
   });
