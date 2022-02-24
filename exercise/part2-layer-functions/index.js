@@ -86,23 +86,21 @@ dynamically set the content of a tooltip.
 
 ========== */
 
-let url = "https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326";
+let url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
 fetch(url)
-  .then(function(response) {
-      return response.json();
-  })
-  .then(function(data) {
+  .then(response => response.json())
+  .then(data => {
     L.geoJSON(data, {
       style: function(feature) {
-        let name1 = feature.properties.NAME;
-        for (let i = 0; i < name1.length; i++) {
-          return {color: campusColors[name1]};
+        let name = feature.properties.NAME;
+        for (let i = 0; i < name.length; i++) {
+          return {color: campusColors[name]};
         }
       }})
       .bindTooltip(function (layer) {
-        let name2 = layer.feature.properties.NAME;
+        let name = layer.feature.properties.NAME;
         let address = layer.feature.properties.ADDRESS;
-        return `Name: ${name2} <br>Address: ${address}`;
+        return `Name: ${name} <br>Address: ${address}`;
       })
       .addTo(map);
   });
