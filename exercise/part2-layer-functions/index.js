@@ -118,7 +118,6 @@ fetch(url)
            color: campusColors[name]
         };
    }}
- }
       )
     .bindTooltip(
       function (layer) {
