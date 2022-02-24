@@ -91,7 +91,7 @@ fetch(url)
   .then(data => {
     L.geoJSON(data, {
       style: feature => {
-          let name1 = feature.properties.NAME;
+        let name1 = feature.properties.NAME;
         return { color: campusColors[name1] };
       },
     })
