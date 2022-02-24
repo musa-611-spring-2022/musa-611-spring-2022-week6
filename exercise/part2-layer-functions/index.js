@@ -124,4 +124,3 @@ fetch(url)
       })
     .addTo(map);
   });
-    });
