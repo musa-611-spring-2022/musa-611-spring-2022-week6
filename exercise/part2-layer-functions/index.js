@@ -115,7 +115,7 @@ fetch(url)
       style: function (feature) {
         let name = feature.properties.NAME;
         return {
-          color: campusColors[name];
+          color: campusColors[name]
         };
       }})
       .bindTooltip(
