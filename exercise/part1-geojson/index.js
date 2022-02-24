@@ -104,6 +104,6 @@ Also potentially useful:
 
 let campusStyle = (feature) => ({
   weight: 5,
-  color: feature['map_color'],
-  fillcolor: feature['map_color'],
+  color: feature.map_color,
+  fillcolor: feature.map_color,
 });
