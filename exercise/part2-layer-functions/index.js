@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -84,3 +84,26 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/reference.html#layer-bindtooltip
 
 ========== */
+
+
+let campusGeojsonUrl = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
+
+function getStyle(school) {
+  return { color: campusColors[school.properties.NAME] };
+}
+
+function displayData(data) {
+  let schools = [];
+
+  data.features.forEach(school => {
+    schools.push(L.geoJSON(school, {
+      style: getStyle(school),
+    }).bindTooltip(school.properties.NAME));
+  });
+
+  L.layerGroup(schools).addTo(map);
+}
+
+fetch(campusGeojsonUrl)
+  .then(response => response.json())
+  .then(data => displayData(data));
