@@ -91,7 +91,13 @@ let universities;
 fetch(url)
   .then(response => response.json())
   .then(data => {
-    universities = L.geoJSON(data)
-      .bindTooltip(layer => layer.feature.properties.NAME)
-      .addTo(map);
+    universities = L.geoJSON(data, {
+      style: function (feature) {
+        let uniNames = feature.properties.NAME;
+        for (let i = 0; i < uniNames.length; i++) {
+          return {color: campusColors[uniNames]};
+        }
+      }
+    })
+    .addTo(map);
   })
