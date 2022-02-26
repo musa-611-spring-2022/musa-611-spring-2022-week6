@@ -101,5 +101,5 @@ fetch(url)
         let address = layer.feature.properties.ADDRESS;
         return `School Name: ${uniName}<br>Building address: ${address}`;
       })
-    .addTo(map);
+      .addTo(map);
   });
