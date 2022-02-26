@@ -1,1 +1,9 @@
-{}
+{
+    "type": "Feature",
+    "geometry": {
+        "type": "Point",
+        "coordinates": [-75.193475, 39.952600]
+     }, "properties": {
+        "name": "Van Pelt Library"
+    }
+}

@@ -71,7 +71,6 @@ Pennsylvania", and a property called "map_color" with the value "#44cc44".
 Hint: Use a tool like geojson.io to trace the shape of the campus.
 
 ========== */
-
 let p3;
 fetch('geojson-3-polygon-feature.json')
   .then(resp => resp.json())
@@ -80,6 +79,7 @@ fetch('geojson-3-polygon-feature.json')
       .bindTooltip(layer => layer.feature.properties.name)
       .addTo(map);
   });
+
 
 /* ==========
 
@@ -104,4 +104,6 @@ Also potentially useful:
 
 let campusStyle = (feature) => ({
   weight: 5,
+  fillColor: feature.properties.map_color,
+  color: feature.properties.map_color,
 });
