@@ -87,6 +87,10 @@ dynamically set the content of a tooltip.
 
 const url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
 
+function getStyle(university) {
+  return { color: campusColors[university.properties.NAME] };
+}
+
 function showSchools(data) {
   const schools = [];
 
@@ -102,7 +106,3 @@ function showSchools(data) {
 fetch(url)
   .then(response => response.json())
   .then(data => showSchools(data));
-
-function getStyle(university) {
-  return { color: campusColors[university.properties.NAME] };
-}
