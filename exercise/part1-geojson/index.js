@@ -37,6 +37,7 @@ let p1;
 fetch('geojson-1-point-geometry.json')
   .then(resp => resp.json())
   .then(data => {
+    // console.log(data);
     p1 = L.geoJSON(data)
       .bindTooltip('Meyerson Hall')
       .addTo(map);
@@ -52,6 +53,7 @@ that displays "Van Pelt Library" when you hover over it.
 
 ========== */
 
+
 let p2;
 fetch('geojson-2-point-feature.json')
   .then(resp => resp.json())
@@ -60,6 +62,7 @@ fetch('geojson-2-point-feature.json')
       .bindTooltip(layer => layer.feature.properties.name)
       .addTo(map);
   });
+
 
 /* ==========
 
@@ -72,6 +75,7 @@ Hint: Use a tool like geojson.io to trace the shape of the campus.
 
 ========== */
 
+
 let p3;
 fetch('geojson-3-polygon-feature.json')
   .then(resp => resp.json())
@@ -80,6 +84,7 @@ fetch('geojson-3-polygon-feature.json')
       .bindTooltip(layer => layer.feature.properties.name)
       .addTo(map);
   });
+
 
 /* ==========
 
@@ -104,4 +109,6 @@ Also potentially useful:
 
 let campusStyle = (feature) => ({
   weight: 5,
+  color: feature.properties.map_color,
+  fillColor: feature.properties.map_color,
 });

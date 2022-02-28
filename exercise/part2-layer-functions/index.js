@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* ==========
 
-Introduction: In this part you will use campus data from OpenDataPhilly. You can
-see your progress visually by running a local web server in the week's
-repository folder:
+Introduction: In this part you will use campus data from OpenDataPhilly.
+You can see your progress visually by running a local web server in the week's repository folder:
 
   npx http-server --port 8000
 
@@ -19,6 +19,7 @@ L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext
   ext: 'png',
 }).addTo(map);
 
+// eslint-disable-next-line no-unused-vars
 const campusColors = {
   // Arts
   'Academy of Vocal Arts': '#fd8d3c',
@@ -48,7 +49,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -84,3 +85,24 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/reference.html#layer-bindtooltip
 
 ========== */
+
+let collegeStyle = (feature) => ({
+  weight: 5,
+  color: campusColors[feature.properties.NAME],
+  fillColor: campusColors[feature.properties.NAME],
+});
+
+let tooltip = (feature) => (
+  `<strong>${feature.properties.NAME}</strong><br><i>${feature.properties.ADDRESS}</i>`
+);
+
+let p1;
+fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
+  .then(resp => resp.json())
+  .then(data => {
+    p1 = L.geoJSON(data, { style: collegeStyle })
+      .bindTooltip(layer => tooltip(layer.feature))
+      .addTo(map);
+  });
+
+
