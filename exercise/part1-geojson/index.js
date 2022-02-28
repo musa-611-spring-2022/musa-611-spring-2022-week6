@@ -108,7 +108,7 @@ Also potentially useful:
 //   color: feature.properties.map_color
 // });
 
-let campusStyle = (feature) => {
-  "weight": 5,
-  "color": feature.properties.map_color
-};
+let campusStyle = (feature) => ({
+  weight: 5,
+  color: feature.properties.map_color,
+});
