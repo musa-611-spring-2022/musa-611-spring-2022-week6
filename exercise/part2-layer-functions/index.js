@@ -93,7 +93,7 @@ fetch(url)
     L.geoJSON(data, {
       style: feature => {
         let collegeName = feature.properties.NAME;
-        return { color: campusColors[collegeNames] };
+        return { color: campusColors[collegeName] };
       },
     })
       .bindTooltip(layer => {
