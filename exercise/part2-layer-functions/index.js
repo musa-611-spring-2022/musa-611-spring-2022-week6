@@ -99,7 +99,7 @@ function mystyleFunction(feature) {
   };
 }
 
-function getname(feature, layer){
+function getname(feature, layer) {
   let schoolInfoTooltip = `<p> School: ${feature.properties.NAME} <br> Adress: ${feature.properties.ADDRESS} <p>`;
   layer.bindTooltip(schoolInfoTooltip);
 }
