@@ -72,8 +72,8 @@ the buildings corresponds to the color assigned to the university. Use the
 Leaflet documentation to determine the appropriate structure of your style
 function:
 
-- https://leafletjs.com/reference.html#geojson-style
-- https://leafletjs.com/reference.html#path-option
+- https://leafletjs.com/SlavaUkraini/reference.html#geojson-style
+- https://leafletjs.com/SlavaUkraini/reference.html#path-option
 
 ## Step 3:
 
@@ -81,6 +81,19 @@ Add a tooltip to each feature that shows the name of the university, and the
 address of the building. Refer to the Leaflet documentation to see how to
 dynamically set the content of a tooltip.
 
-- https://leafletjs.com/reference.html#layer-bindtooltip
+- https://leafletjs.com/SlavaUkraini/reference.html#layer-bindtooltip
 
 ========== */
+let p1;
+fetch('Universities_Colleges.geojson')
+  .then(resp => resp.json())
+  .then(data => {
+    p1 = L.geoJSON(data, {
+      onEachFeature: function (feature, layer) {
+            layer.bindTooltip(feature.properties['NAME'] + ": " + feature.properties['ADDRESS']);
+            layer.setStyle({fillColor: campusColors[layer.feature.properties['NAME']]});
+            layer.setStyle({color: campusColors[layer.feature.properties['NAME']]})
+        }
+     })
+      .addTo(map);
+  });
