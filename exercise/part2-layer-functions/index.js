@@ -88,12 +88,11 @@ dynamically set the content of a tooltip.
 fetch('Universities_Colleges.geojson')
   .then(resp => resp.json())
   .then(data => {
-    let p1 = L.geoJSON(data, {
+    L.geoJSON(data, {
       onEachFeature(feature, layer) {
-        layer.bindTooltip(feature.properties.NAME + ': ' + feature.properties.ADDRESS);
+        layer.bindTooltip(`${feature.properties.NAME}: ${feature.properties.ADDRESS}`);
         layer.setStyle({ fillColor: campusColors[layer.feature.properties.NAME] });
         layer.setStyle({ color: campusColors[layer.feature.properties.NAME] });
       }
-    })
-    .addTo(map);
+    }).addTo(map);
   });
