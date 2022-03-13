@@ -89,19 +89,21 @@ feature's stroke and fill color get set using the `map_color` attribute for the
 campus.
 
 The Leaflet Path options documentation will be useful:
-https://leafletjs.com/reference.html#path-option
+https://leafletjs.com/SlavaUkraini/reference.html#path-option
 
 If you're not sure what argument is passed in to the function, try using setting
 a breakpoint inside of the function, or using console.log to inspect it.
 
 Also potentially useful:
 - Documentation on the GeoJSON `style` option:
-  https://leafletjs.com/reference.html#geojson-style
+  https://leafletjs.com/SlavaUkraini/reference.html#geojson-style
 - The Leaflet tutorial on GeoJSON:
-  https://leafletjs.com/examples/geojson/
+  https://leafletjs.com/SlavaUkraini/examples/geojson/
 
 ========== */
 
 let campusStyle = (feature) => ({
+  color: feature.properties.map_color,
+  fillColor: feature.properties.map_color,
   weight: 5,
 });
