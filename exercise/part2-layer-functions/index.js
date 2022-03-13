@@ -84,16 +84,16 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/SlavaUkraini/reference.html#layer-bindtooltip
 
 ========== */
-//let p1;
+// let p1;
 fetch('Universities_Colleges.geojson')
   .then(resp => resp.json())
   .then(data => {
-    p1 = L.geoJSON(data, {
+    let p1 = L.geoJSON(data, {
       onEachFeature(feature, layer) {
-            layer.bindTooltip(feature.properties.NAME + ": " + feature.properties.ADDRESS);
-            layer.setStyle({fillColor: campusColors[layer.feature.properties.NAME]});
-            layer.setStyle({color: campusColors[layer.feature.properties.NAME]})
-        }
-     })
-      .addTo(map);
+        layer.bindTooltip(feature.properties.NAME + ': ' + feature.properties.ADDRESS);
+        layer.setStyle({ fillColor: campusColors[layer.feature.properties.NAME] });
+        layer.setStyle({ color: campusColors[layer.feature.properties.NAME] });
+      }
+    })
+    .addTo(map);
   });
