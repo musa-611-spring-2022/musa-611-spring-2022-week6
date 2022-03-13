@@ -93,6 +93,6 @@ fetch('Universities_Colleges.geojson')
         layer.bindTooltip(`${feature.properties.NAME}: ${feature.properties.ADDRESS}`);
         layer.setStyle({ fillColor: campusColors[layer.feature.properties.NAME] });
         layer.setStyle({ color: campusColors[layer.feature.properties.NAME] });
-      }
+      },
     }).addTo(map);
   });
