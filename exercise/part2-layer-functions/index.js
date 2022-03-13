@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -84,15 +84,15 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/SlavaUkraini/reference.html#layer-bindtooltip
 
 ========== */
-let p1;
+//let p1;
 fetch('Universities_Colleges.geojson')
   .then(resp => resp.json())
   .then(data => {
     p1 = L.geoJSON(data, {
-      onEachFeature: function (feature, layer) {
-            layer.bindTooltip(feature.properties['NAME'] + ": " + feature.properties['ADDRESS']);
-            layer.setStyle({fillColor: campusColors[layer.feature.properties['NAME']]});
-            layer.setStyle({color: campusColors[layer.feature.properties['NAME']]})
+      onEachFeature(feature, layer) {
+            layer.bindTooltip(feature.properties.NAME + ": " + feature.properties.ADDRESS);
+            layer.setStyle({fillColor: campusColors[layer.feature.properties.NAME]});
+            layer.setStyle({color: campusColors[layer.feature.properties.NAME]})
         }
      })
       .addTo(map);
