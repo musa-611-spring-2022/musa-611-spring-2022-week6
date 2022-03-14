@@ -48,9 +48,37 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
+
+
+
+function style(feature) {
+  let name = feature.properties.NAME;
+  return { color: campusColors[name] };
+}
+
+function onEachFeature(feature, layer) {
+  let name = feature.properties.NAME;
+  let address = feature.properties.ADDRESS;
+  // layer.bindTooltip(name + '<br>' + 'Address: ' + address);
+  layer.bindTooltip(`${name}${'<br>'}Address: ${address}`);
+}
+
+
+
+// let p1;
+const url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
+fetch(url)
+  .then(resp => resp.json())
+  .then(data => {
+    L.geoJSON(data, { style, onEachFeature })
+      .addTo(map);
+  });
+
+
+
 
 /* ==========
 
@@ -60,6 +88,7 @@ Use the `fetch` function to retrieve GeoJSON data from the URL for Philadelphia
 Universities and Colleges. You can find the data at:
 
   https://opendataphilly.org/dataset/philadelphia-universities-and-colleges
+
 
 The callback for your fetch should add the data to the map using a GeoJSON
 Layer.
