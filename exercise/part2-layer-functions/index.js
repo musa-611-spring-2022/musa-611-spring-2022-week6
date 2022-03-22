@@ -100,4 +100,3 @@ fetch(PHLuniversities)
       .addTo(map);
   });
 
-  
