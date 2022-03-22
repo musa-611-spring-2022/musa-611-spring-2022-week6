@@ -103,5 +103,7 @@ Also potentially useful:
 ========== */
 
 let campusStyle = (feature) => ({
+  color: feature.properties.map_color,
+  fillColor: feature.properties.map_color,
   weight: 5,
 });
