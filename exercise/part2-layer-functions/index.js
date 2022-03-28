@@ -113,4 +113,3 @@ fetch(universityUrl).then(resp => resp.json())
       .bindTooltip(getSchoolTooltip)
       .addTo(schoolLayer);
   });
-  
