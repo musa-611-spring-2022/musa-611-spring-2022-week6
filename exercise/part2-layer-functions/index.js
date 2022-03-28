@@ -98,5 +98,3 @@ fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f5
       })
       .addTo(map);
   });
-
-  
