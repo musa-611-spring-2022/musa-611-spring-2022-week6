@@ -84,3 +84,19 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/reference.html#layer-bindtooltip
 
 ========== */
+
+fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
+  .then(resp => resp.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style: (feature) => ({ color: campusColors[feature.properties.NAME] }),
+    })
+      .bindTooltip((layer) => {
+        let schoolName = layer.feature.properties.NAME;
+        let address = layer.feature.properties.ADDRESS;
+        return `${address} <br> ${schoolName}`;
+      })
+      .addTo(map);
+  });
+
+  
