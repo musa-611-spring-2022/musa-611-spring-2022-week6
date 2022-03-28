@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
