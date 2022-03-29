@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -63,7 +63,9 @@ Universities and Colleges. You can find the data at:
 
 The callback for your fetch should add the data to the map using a GeoJSON
 Layer.
+*/
 
+/*
 ## Step 2:
 
 Above we have a JavaScript object called `campusColors` that associates a color
@@ -74,7 +76,9 @@ function:
 
 - https://leafletjs.com/reference.html#geojson-style
 - https://leafletjs.com/reference.html#path-option
+*/
 
+/*
 ## Step 3:
 
 Add a tooltip to each feature that shows the name of the university, and the
@@ -84,3 +88,18 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/reference.html#layer-bindtooltip
 
 ========== */
+
+let url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
+
+let campusStyle = (feature) => ({
+  weight: 5,
+  color: campusColors[feature.properties.NAME],
+});
+
+fetch(url)
+  .then(resp => resp.json())
+  .then(data => {
+    L.geoJSON(data, { style: campusStyle })
+      .bindTooltip(layer => layer.feature.properties.NAME + layer.feature.properties.ADDRESS)
+      .addTo(map);
+  });
