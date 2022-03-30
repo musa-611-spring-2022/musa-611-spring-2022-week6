@@ -35,8 +35,8 @@ displays "Meyerson Hall" when you hover over it.
 
 let p1;
 fetch('geojson-1-point-geometry.json')
-  .then(resp => resp.json())
-  .then(data => {
+  .then((resp) => resp.json())
+  .then((data) => {
     p1 = L.geoJSON(data)
       .bindTooltip('Meyerson Hall')
       .addTo(map);
@@ -54,10 +54,10 @@ that displays "Van Pelt Library" when you hover over it.
 
 let p2;
 fetch('geojson-2-point-feature.json')
-  .then(resp => resp.json())
-  .then(data => {
+  .then((resp) => resp.json())
+  .then((data) => {
     p2 = L.geoJSON(data)
-      .bindTooltip(layer => layer.feature.properties.name)
+      .bindTooltip((layer) => layer.feature.properties.name)
       .addTo(map);
   });
 
@@ -74,10 +74,10 @@ Hint: Use a tool like geojson.io to trace the shape of the campus.
 
 let p3;
 fetch('geojson-3-polygon-feature.json')
-  .then(resp => resp.json())
-  .then(data => {
+  .then((resp) => resp.json())
+  .then((data) => {
     p3 = L.geoJSON(data, { style: campusStyle })
-      .bindTooltip(layer => layer.feature.properties.name)
+      .bindTooltip((layer) => layer.feature.properties.name)
       .addTo(map);
   });
 
