@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -64,6 +64,39 @@ Universities and Colleges. You can find the data at:
 The callback for your fetch should add the data to the map using a GeoJSON
 Layer.
 
+========== */
+
+const urlUni = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
+
+const schoolLayer = L.layerGroup();
+schoolLayer.addTo(map);
+
+let getColor = (f) => {
+  let name = f.properties.NAME;
+  let color = campusColors[name];
+  return ({
+    color,
+  });
+};
+
+let getTip = (f) => {
+  let name = f.feature.properties.NAME;
+  let address = f.feature.properties.ADDRESS;
+  return (`
+    <p><b>Name</b>: ${name}</p>
+    <p><b>Address</b>: ${address}</p>
+  `);
+};
+
+fetch(urlUni).then(resp => resp.json())
+  .then(data => {
+    L.geoJSON(data, { style: getColor })
+      .bindTooltip(getTip)
+      .addTo(schoolLayer);
+  });
+
+/* ==========
+
 ## Step 2:
 
 Above we have a JavaScript object called `campusColors` that associates a color
@@ -74,6 +107,10 @@ function:
 
 - https://leafletjs.com/reference.html#geojson-style
 - https://leafletjs.com/reference.html#path-option
+
+========== */
+
+/* ==========
 
 ## Step 3:
 
