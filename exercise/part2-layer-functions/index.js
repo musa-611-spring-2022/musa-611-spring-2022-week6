@@ -66,7 +66,7 @@ Layer.
 
 ========== */
 
-const url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
+const urlUni = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
 
 const schoolLayer = L.layerGroup();
 schoolLayer.addTo(map);
@@ -88,7 +88,7 @@ let getTip = (f) => {
   `);
 };
 
-fetch(universityUrl).then(resp => resp.json())
+fetch(urlUni).then(resp => resp.json())
   .then(data => {
     L.geoJSON(data, { style: getColor })
       .bindTooltip(getTip)
