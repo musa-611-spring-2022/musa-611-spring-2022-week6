@@ -71,28 +71,27 @@ const url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d
 const schoolLayer = L.layerGroup();
 schoolLayer.addTo(map);
 
-let styleColor = (feature) => {
-  let name = feature.properties.NAME;
+let getColor = (f) => {
+  let name = f.properties.NAME;
   let color = campusColors[name];
   return ({
     color,
   });
 };
 
-let toolTip = (feature) => {
-  let n = feature.feature.properties.NAME;
-  const ad = feature.feature.properties.ADDRESS;
+let getTip = (f) => {
+  let name = f.feature.properties.NAME;
+  let address = f.feature.properties.ADDRESS;
   return (`
-    <p><b>Name</b>: ${n}</p>
-    <p><b>Address</b>: ${ad}</p>
+    <p><b>Name</b>: ${name}</p>
+    <p><b>Address</b>: ${address}</p>
   `);
 };
 
-fetch(url)
-  .then((resp) => resp.json())
-  .then((data) => {
-    L.geoJSON(data, { style: styleColor })
-      .bindTooltip(toolTip)
+fetch(universityUrl).then(resp => resp.json())
+  .then(data => {
+    L.geoJSON(data, { style: getColor })
+      .bindTooltip(getTip)
       .addTo(schoolLayer);
   });
 
