@@ -100,4 +100,3 @@ fetch(url)
       .bindTooltip(layer => layer.feature.properties.NAME + layer.feature.properties.ADDRESS)
       .addTo(map);
   });
-  
