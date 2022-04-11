@@ -64,6 +64,7 @@ Universities and Colleges. You can find the data at:
 The callback for your fetch should add the data to the map using a GeoJSON
 Layer.
 
+
 ## Step 2:
 
 Above we have a JavaScript object called `campusColors` that associates a color
@@ -84,3 +85,18 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/reference.html#layer-bindtooltip
 
 ========== */
+let url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326';
+
+let campusStyle = (feature) => ({
+  weight: 5,
+  color: campusColors[feature.properties.NAME]
+});
+
+let map2;
+fetch(url)
+  .then(resp => resp.json())
+  .then(data => {
+    map2 = L.geoJSON(data, { style:campusStyle })
+      .bindTooltip(layer => layer.feature.properties.NAME + layer.feature.properties.ADDRESS)
+      .addTo(map);
+  });
