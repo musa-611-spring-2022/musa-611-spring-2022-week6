@@ -5,7 +5,7 @@
       "type": "Feature",
       "properties": {
         "name": "University of Pennsylvania",
-        "map_color": "#44c044"
+        "map_color": "#44cc44"
       },
       "geometry": {
         "type": "Polygon",
