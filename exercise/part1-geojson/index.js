@@ -72,11 +72,11 @@ Hint: Use a tool like geojson.io to trace the shape of the campus.
 
 ========== */
 
-let p3;
+// why if I let a p3 like that in part1, it will say p3 never used??
 fetch('geojson-3-polygon-feature.json')
   .then(resp => resp.json())
   .then(data => {
-    p3 = L.geoJSON(data, { style: campusStyle })
+    L.geoJSON(data, { style: campusStyle })
       .bindTooltip(layer => layer.feature.properties.name)
       .addTo(map);
   });
