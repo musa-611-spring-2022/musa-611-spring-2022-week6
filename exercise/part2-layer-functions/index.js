@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -84,3 +84,49 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/reference.html#layer-bindtooltip
 
 ========== */
+
+// // Step 1
+// let p1;
+
+// fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
+//   .then(resp => resp.json())
+//   .then(data => {
+//     p1 = L.geoJSON(data)
+//       .addTo(map);
+//   });
+
+// // Step 2
+
+
+// let p2;
+// fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
+//   .then(resp => resp.json())
+//   .then(data => {
+//     p2 = L.geoJSON(data, {
+//       style(feature) {
+//         let names  = feature.properties.NAME;
+//         return { color: campusColors[names] };
+//       },
+//     }).addTo(map);
+//   });
+
+// // Step 3
+
+// why if I let a p3 like that in part1, it will say p3 never used??
+
+fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
+  .then(resp => resp.json())
+  .then(data => {
+    L.geoJSON(data, {
+      style(feature) {
+        let names  = feature.properties.NAME;
+        return { color: campusColors[names] };
+      },
+    })
+      .bindTooltip(layer =>  {
+        let nam = layer.feature.properties.NAME;
+        let addr = layer.feature.properties.ADDRESS;
+        return `Name: ${nam} <br> Address: ${addr}`;
+      })
+      .addTo(map);
+  });
