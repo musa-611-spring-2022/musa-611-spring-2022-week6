@@ -112,11 +112,12 @@ dynamically set the content of a tooltip.
 
 // // Step 3
 
-let p3;
+// why if I let a p3 like that in part1, it will say p3 never used??
+
 fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
   .then(resp => resp.json())
   .then(data => {
-    p3 = L.geoJSON(data, {
+    L.geoJSON(data, {
       style(feature) {
         let names  = feature.properties.NAME;
         return { color: campusColors[names] };
