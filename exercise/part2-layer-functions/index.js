@@ -87,19 +87,34 @@ dynamically set the content of a tooltip.
 
 let myURL = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Universities_Colleges/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token=';
 
+// fetch(myURL)
+//   .then(resp => resp.json())
+//   .then(data => {
+//     data.features.forEach((feature, i) => {
+//       feature.properties.map_color = campusColors;
+//     });
+//
+//     L.geoJSON(data).addTo(map);
+//   });
+//
+//
+// let schoolStyle = (feature) => ({
+//   weight: 5,
+//   color: feature.properties.map_color,
+//   fill: feature.properties.map_color,
+// });
+
+
 fetch(myURL)
-  .then(resp => resp.json())
-  .then(data => {
-    data.features.forEach((feature, i) => {
-      feature.properties.map_color = schoolStyle;
-    });
-
-    L.geoJSON(data).addTo(map);
+  .then((response) => response.json())
+  .then((data) => {
+    L.geoJSON(data, {
+      style: feature => ({ color: campusColors[feature.properties.NAME] }),
+    })
+      .bindTooltip(layer => {
+        let name = layer.feature.properties.NAME;
+        let address = layer.feature.properties.ADDRESS;
+        return `Name: ${name}<br>Address: ${address}`;
+      })
+      .addTo(map);
   });
-
-
-let schoolStyle = (feature) => ({
-  weight: 5,
-  color: feature.properties.map_color,
-  fill: feature.properties.map_color,
-});
