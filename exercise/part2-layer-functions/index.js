@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -91,15 +91,15 @@ fetch(myURL)
   .then(resp => resp.json())
   .then(data => {
     data.features.forEach((feature, i) => {
-      feature.properties.map_color = campusColors
+      feature.properties.map_color = campusColors;
     });
 
     L.geoJSON(data).addTo(map);
   });
 
 
-  let schoolStyle = (feature) => ({
-    weight: 5,
-    color: feature.properties.map_color,
-    fill: feature.properties.map_color,
+let schoolStyle = (feature) => ({
+  weight: 5,
+  color: feature.properties.map_color,
+  fill: feature.properties.map_color,
   });
