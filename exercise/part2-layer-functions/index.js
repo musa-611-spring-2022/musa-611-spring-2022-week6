@@ -91,7 +91,7 @@ fetch(myURL)
   .then(resp => resp.json())
   .then(data => {
     data.features.forEach((feature, i) => {
-      feature.properties.map_color = campusColors;
+      feature.properties.map_color = schoolStyle;
     });
 
     L.geoJSON(data).addTo(map);
@@ -102,4 +102,4 @@ let schoolStyle = (feature) => ({
   weight: 5,
   color: feature.properties.map_color,
   fill: feature.properties.map_color,
-  });
+});
