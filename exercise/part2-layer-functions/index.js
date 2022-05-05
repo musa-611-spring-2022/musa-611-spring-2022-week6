@@ -67,7 +67,6 @@ fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f5
         let schoolName = layer.feature.properties.NAME;
         let schoolAddress = layer.feature.properties.ADDRESS;
         return `Name: ${schoolName}, Address: ${schoolAddress}`;
-
       })
       .addTo(map);
   });
