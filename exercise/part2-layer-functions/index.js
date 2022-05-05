@@ -48,16 +48,16 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
 
-let p1;
+
 fetch('https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f66f57d1_0/downloads/data?format=geojson&spatialRefId=4326')
   .then(resp => resp.json())
   .then(data => {
-    p1 = L.geoJSON(data, {
+    L.geoJSON(data, {
       style: feature => {
         let names = feature.properties.NAME;
         return { color: campusColors[names] };
