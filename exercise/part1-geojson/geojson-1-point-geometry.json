@@ -1,1 +1,18 @@
-{}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Meyerson Hall"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.192653,
+          39.952207
+        ]
+      }
+    }
+  ]
+}
