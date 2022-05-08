@@ -3,9 +3,7 @@
   "features": [
     {
       "type": "Feature",
-      "properties": {
-        "name": "Meyerson Hall"
-      },
+      "properties": {},
       "geometry": {
         "type": "Point",
         "coordinates": [
