@@ -48,7 +48,7 @@ const campusColors = {
   'Temple University': '#cb181d',
   'Temple University Medical': '#66c2a4',
   'Thomas Jefferson University': '#238b45',
-  'University of Pennsylvania':  '#67000d',
+  'University of Pennsylvania': '#67000d',
   'University of the Sciences in Philadelphia': '#00441b',
 };
 
@@ -84,3 +84,19 @@ dynamically set the content of a tooltip.
 - https://leafletjs.com/reference.html#layer-bindtooltip
 
 ========== */
+
+let myURL = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/Universities_Colleges/FeatureServer/0/query?where=1%3D1&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&resultType=none&distance=0.0&units=esriSRUnit_Meter&returnGeodetic=false&outFields=*&returnGeometry=true&returnCentroid=false&featureEncoding=esriDefault&multipatchOption=xyFootprint&maxAllowableOffset=&geometryPrecision=&outSR=&datumTransformation=&applyVCSProjection=false&returnIdsOnly=false&returnUniqueIdsOnly=false&returnCountOnly=false&returnExtentOnly=false&returnQueryGeometry=false&returnDistinctValues=false&cacheHint=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&having=&resultOffset=&resultRecordCount=&returnZ=false&returnM=false&returnExceededLimitFeatures=true&quantizationParameters=&sqlFormat=none&f=pgeojson&token=';
+
+fetch(myURL)
+  .then((response) => response.json())
+  .then((data) => {
+    L.geoJSON(data, {
+      style: feature => ({ color: campusColors[feature.properties.NAME] }),
+    })
+      .bindTooltip(layer => {
+        let name = layer.feature.properties.NAME;
+        let address = layer.feature.properties.ADDRESS;
+        return `Name: ${name}<br>Address: ${address}`;
+      })
+      .addTo(map);
+  });
