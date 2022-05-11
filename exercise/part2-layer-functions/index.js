@@ -95,6 +95,7 @@ let campusStyle = (feature) => ({
 fetch(url)
   .then(resp => resp.json())
   .then(data => {
+    let map2;
     map2 = L.geoJSON(data, { style: campusStyle })
       .bindTooltip(layer => layer.feature.properties.NAME + layer.feature.properties.ADDRESS)
       .addTo(map);
