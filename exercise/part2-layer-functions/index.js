@@ -88,7 +88,7 @@ let url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f
 
 let campusStyle = (feature) => ({
   weight: 5,
-  color: campusColors[feature.properties.NAME]
+  color: campusColors[feature.properties.NAME],
 });
 
 

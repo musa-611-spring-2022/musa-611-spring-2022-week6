@@ -104,5 +104,6 @@ Also potentially useful:
 
 let campusStyle = (feature) => ({
   weight: 5,
+  stroke: true,
   color: feature.properties.map_color,
 });
