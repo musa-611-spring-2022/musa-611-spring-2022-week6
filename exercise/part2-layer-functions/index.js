@@ -88,7 +88,7 @@ let url = 'https://opendata.arcgis.com/api/v3/datasets/8ad76bc179cf44bd9b1c23d6f
 
 let campusStyle = (feature) => ({
   weight: 5,
-  color: campusColors[feature.properties.NAME],
+  color: campusColors[feature.properties.NAME]
 });
 
 
@@ -96,6 +96,10 @@ fetch(url)
   .then(resp => resp.json())
   .then(data => {
     L.geoJSON(data, { style: campusStyle })
-      .bindTooltip(layer => layer.feature.properties.NAME + layer.feature.properties.ADDRESS)
+      .bindTooltip(layer => {
+        let name = layer.feature.properties.NAME;
+        let address = layer.feature.properties.ADDRESS;
+        return `Name: ${name}<br>Address: ${address}`;
+      })
       .addTo(map);
   });
